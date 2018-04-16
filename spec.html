@@ -1592,6 +1592,112 @@ emu-integration-plans:before {
     </emu-table>
   </emu-clause>
 
+  <emu-clause id="sec-toint32" aoid="ToInt32">
+    <h1>ToInt32 ( _argument_ )</h1>
+    <p>The abstract operation ToInt32 converts _argument_ to one of 2<sup>32</sup> integer values in the range <emu-eqn>-2<sup>31</sup></emu-eqn> through <emu-eqn>2<sup>31</sup>-1</emu-eqn>, inclusive. This abstract operation functions as follows:</p>
+    <emu-alg>
+      1. Let _number_ be ? <del>ToNumber</del><ins>ToNumeric</ins>(_argument_).
+      1. If _number_ is *NaN*, *+0*, *-0*, *+&infin;*, or *-&infin;*, return *+0*.
+      1. Let _int_ be the mathematical value that is the same sign as _number_ and whose magnitude is floor(abs(_number_)).
+      1. Let _int32bit_ be _int_ modulo 2<sup>32</sup>.
+      1. If _int32bit_ &ge; 2<sup>31</sup>, return _int32bit_ - 2<sup>32</sup>; otherwise return _int32bit_.
+    </emu-alg>
+  </emu-clause>
+
+  <emu-clause id="sec-touint32" aoid="ToUint32">
+    <h1>ToUint32 ( _argument_ )</h1>
+    <p>The abstract operation ToUint32 converts _argument_ to one of 2<sup>32</sup> integer values in the range 0 through <emu-eqn>2<sup>32</sup>-1</emu-eqn>, inclusive. This abstract operation functions as follows:</p>
+    <emu-alg>
+      1. Let _number_ be ? <del>ToNumber</del><ins>ToNumeric</ins>(_argument_).
+      1. If _number_ is *NaN*, *+0*, *-0*, *+&infin;*, or *-&infin;*, return *+0*.
+      1. Let _int_ be the mathematical value that is the same sign as _number_ and whose magnitude is floor(abs(_number_)).
+      1. Let _int32bit_ be _int_ modulo 2<sup>32</sup>.
+      1. Return _int32bit_.
+    </emu-alg>
+  </emu-clause>
+
+  <emu-clause id="sec-toint16" aoid="ToInt16">
+    <h1>ToInt16 ( _argument_ )</h1>
+    <p>The abstract operation ToInt16 converts _argument_ to one of 2<sup>16</sup> integer values in the range -32768 through 32767, inclusive. This abstract operation functions as follows:</p>
+    <emu-alg>
+      1. Let _number_ be ? ToNumber(_argument_).
+      1. If _number_ is *NaN*, *+0*, *-0*, *+&infin;*, or *-&infin;*, return *+0*.
+      1. Let _int_ be the mathematical value that is the same sign as _number_ and whose magnitude is floor(abs(_number_)).
+      1. Let _int16bit_ be _int_ modulo 2<sup>16</sup>.
+      1. If _int16bit_ &ge; 2<sup>15</sup>, return _int16bit_ - 2<sup>16</sup>; otherwise return _int16bit_.
+    </emu-alg>
+  </emu-clause>
+
+  <!-- es6num="7.1.8" -->
+  <emu-clause id="sec-touint16" aoid="ToUint16">
+    <h1>ToUint16 ( _argument_ )</h1>
+    <p>The abstract operation ToUint16 converts _argument_ to one of 2<sup>16</sup> integer values in the range 0 through <emu-eqn>2<sup>16</sup>-1</emu-eqn>, inclusive. This abstract operation functions as follows:</p>
+    <emu-alg>
+      1. Let _number_ be ? ToNumber(_argument_).
+      1. If _number_ is *NaN*, *+0*, *-0*, *+&infin;*, or *-&infin;*, return *+0*.
+      1. Let _int_ be the mathematical value that is the same sign as _number_ and whose magnitude is floor(abs(_number_)).
+      1. Let _int16bit_ be _int_ modulo 2<sup>16</sup>.
+      1. Return _int16bit_.
+    </emu-alg>
+    <emu-note>
+      <p>Given the above definition of ToUint16:</p>
+      <ul>
+        <li>
+          The substitution of 2<sup>16</sup> for 2<sup>32</sup> in step 4 is the only difference between ToUint32 and ToUint16.
+        </li>
+        <li>
+          ToUint16 maps *-0* to *+0*.
+        </li>
+      </ul>
+    </emu-note>
+  </emu-clause>
+
+  <!-- es6num="7.1.9" -->
+  <emu-clause id="sec-toint8" aoid="ToInt8">
+    <h1>ToInt8 ( _argument_ )</h1>
+    <p>The abstract operation ToInt8 converts _argument_ to one of 2<sup>8</sup> integer values in the range -128 through 127, inclusive. This abstract operation functions as follows:</p>
+    <emu-alg>
+      1. Let _number_ be ? ToNumber(_argument_).
+      1. If _number_ is *NaN*, *+0*, *-0*, *+&infin;*, or *-&infin;*, return *+0*.
+      1. Let _int_ be the mathematical value that is the same sign as _number_ and whose magnitude is floor(abs(_number_)).
+      1. Let _int8bit_ be _int_ modulo 2<sup>8</sup>.
+      1. If _int8bit_ &ge; 2<sup>7</sup>, return _int8bit_ - 2<sup>8</sup>; otherwise return _int8bit_.
+    </emu-alg>
+  </emu-clause>
+
+  <!-- es6num="7.1.10" -->
+  <emu-clause id="sec-touint8" aoid="ToUint8">
+    <h1>ToUint8 ( _argument_ )</h1>
+    <p>The abstract operation ToUint8 converts _argument_ to one of 2<sup>8</sup> integer values in the range 0 through 255, inclusive. This abstract operation functions as follows:</p>
+    <emu-alg>
+      1. Let _number_ be ? ToNumber(_argument_).
+      1. If _number_ is *NaN*, *+0*, *-0*, *+&infin;*, or *-&infin;*, return *+0*.
+      1. Let _int_ be the mathematical value that is the same sign as _number_ and whose magnitude is floor(abs(_number_)).
+      1. Let _int8bit_ be _int_ modulo 2<sup>8</sup>.
+      1. Return _int8bit_.
+    </emu-alg>
+  </emu-clause>
+
+  <!-- es6num="7.1.11" -->
+  <emu-clause id="sec-touint8clamp" aoid="ToUint8Clamp">
+    <h1>ToUint8Clamp ( _argument_ )</h1>
+    <p>The abstract operation ToUint8Clamp converts _argument_ to one of 2<sup>8</sup> integer values in the range 0 through 255, inclusive. This abstract operation functions as follows:</p>
+    <emu-alg>
+      1. Let _number_ be ? ToNumber(_argument_).
+      1. If _number_ is *NaN*, return *+0*.
+      1. If _number_ &le; 0, return *+0*.
+      1. If _number_ &ge; 255, return 255.
+      1. Let _f_ be floor(_number_).
+      1. If _f_ + 0.5 &lt; _number_, return _f_ + 1.
+      1. If _number_ &lt; _f_ + 0.5, return _f_.
+      1. If _f_ is odd, return _f_ + 1.
+      1. Return _f_.
+    </emu-alg>
+    <emu-note>
+      <p>Unlike the other ECMAScript integer conversion abstract operation, ToUint8Clamp rounds rather than truncates non-integer values and does not convert *+&infin;* to 0. ToUint8Clamp does &ldquo;round half to even&rdquo; tie-breaking. This differs from `Math.round` which does &ldquo;round half up&rdquo; tie-breaking.</p>
+    </emu-note>
+  </emu-clause>
+    
   <emu-clause id="sec-to-big-int64" aoid="ToBigInt64">
     <h1>ToBigInt64 ( _argument_ )</h1>
     <p>The abstract operation ToBigInt64 converts _argument_ to one of 2<sup>64</sup> integer values in the range -2<sup>63</sup> through 2<sup>63</sup>-1, inclusive. This abstract operation functions as follows:</p>
